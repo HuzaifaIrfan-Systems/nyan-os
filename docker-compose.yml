@@ -1,0 +1,13 @@
+
+services:
+  alpine-builder:
+    container_name: alpine-builder
+    build:
+      context: .
+      dockerfile: dockerfile
+    image: alpine-builder
+    command: sh -c "while true; do echo hello > /home/build/iso/hello.txt; sleep 30; done"
+    volumes:
+      - ./iso:/home/build/iso
+      - ./workdir:/home/build/workdir
+      - ./aports:/home/build/aports
