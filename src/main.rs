@@ -1,10 +1,12 @@
 use rodio::{Decoder, OutputStream, Sink, Source}; // <- Added Source trait here
 use std::io::Cursor;
+use std::io::{stdout, Write};
 
 use alsa::mixer::{Mixer, SelemChannelId, SelemId};
 
 pub mod color;
 pub mod frames;
+use crate::color::Color;
 
 use std::{thread, time::Duration};
 
@@ -59,18 +61,29 @@ fn play_audio() {
     sink.sleep_until_end();
 }
 
+fn draw_frame(frame: &[[Color; 80]; 25]){
+
+    // Position cursor and print
+    print!("\x1B[5;1H");
+
+    for (i, row) in frame.iter().enumerate() {
+        // Move cursor to beginning of line with vertical position
+        // Using i (the row index) for vertical positioning
+        print!("\x1B[{};{}H", 5 + i, 1);
+        
+        for color in row.iter() {
+            print!("{}", color.to_ansi_code());
+        }
+    }
+    stdout().flush().unwrap();
+
+}
+
 fn animate() {
     loop {
         for frame in frames::FRAMES.iter() {
             // Move cursor to second row, first column
-            print!("\x1B[5;1H");
-
-            for row in frame {
-                for color in row.iter() {
-                    print!("{}", color.to_ansi_code());
-                }
-                println!();
-            }
+            draw_frame(frame);
             // Delay between frames (e.g., 100 milliseconds)
             thread::sleep(Duration::from_millis(100));
         }
@@ -83,7 +96,8 @@ fn main() {
     println!("Nyan OS");
     println!("01 June 2025");
     println!("Developed by Huzaifa Irfan");
-
+    thread::sleep(Duration::from_millis(2000));
+    
     // Thread for animation
     let animation_handle = thread::spawn(|| {
         animate();
