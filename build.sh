@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+rm -rf workdir/apkovl*
+
 cp scripts/* aports/scripts/
 sh aports/scripts/mkimage.sh \
     --workdir ~/workdir \
