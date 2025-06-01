@@ -11,3 +11,6 @@ services:
       - ./iso:/home/build/iso
       - ./workdir:/home/build/workdir
       - ./aports:/home/build/aports
+      - ./scripts:/home/build/scripts
+      - ./app:/home/build/app
+      - ./build.sh:/home/build/build.sh

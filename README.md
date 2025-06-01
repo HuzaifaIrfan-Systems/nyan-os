@@ -24,13 +24,13 @@ qemu-system-x86_64 \
   -drive if=pflash,format=raw,file=OVMF_VARS_4M.fd \
   -boot d \
   -nic user \
-  -cdrom iso/alpine-nyan-250601-x86_64.iso
+  -cdrom iso/alpine-nyan-20250601-x86_64.iso
 ```
 
 ## Flash to USB
 
 ```sh
-sudo dd bs=4M status=progress oflag=sync of=/dev/sdb if=iso/alpine-nyan-250601-x86_64.iso
+sudo dd bs=4M status=progress oflag=sync of=/dev/sdb if=iso/alpine-nyan-20250601-x86_64.iso
 ```
 
 ```sh
