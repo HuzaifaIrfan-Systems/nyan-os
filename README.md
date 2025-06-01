@@ -36,3 +36,8 @@ sudo dd bs=4M status=progress oflag=sync of=/dev/sdb if=iso/alpine-nyan-20250601
 ```sh
 sudo eject /dev/sdb
 ```
+
+## ttyX
+- tty1 = nyan
+- tty2 = alsamixer
+- tty3 = getty

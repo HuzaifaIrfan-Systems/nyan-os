@@ -57,7 +57,8 @@ makefile root:root 0755 "$tmp"/etc/inittab <<EOF
 
 # tty1::respawn:/sbin/agetty 38400 tty1 --autologin root --noclear
 tty1::respawn:/etc/nyan
-tty2::respawn:/sbin/getty 38400 tty2
+tty2::respawn:/usr/bin/alsamixer
+tty3::respawn:/sbin/getty 38400 tty3
 
 ::shutdown:/sbin/openrc shutdown
 
