@@ -1,16 +1,20 @@
 use rodio::{Decoder, OutputStream, Sink, Source}; // <- Added Source trait here
 use std::io::Cursor;
 
-use alsa::mixer::{Mixer, SelemId, SelemChannelId};
+use alsa::mixer::{Mixer, SelemChannelId, SelemId};
 
-fn set_volume(){
+pub mod color;
+pub mod frames;
 
+fn set_volume() {
     // Open the "default" mixer
     let mixer = Mixer::new("default", false).expect("Failed to open mixer");
 
     // Target the "Master" playback volume
     let sid = SelemId::new("Master", 0);
-    let selem = mixer.find_selem(&sid).expect("Could not find 'Master' control");
+    let selem = mixer
+        .find_selem(&sid)
+        .expect("Could not find 'Master' control");
 
     // Set volume on both left and right channels (or Front Left / Front Right)
     let min = selem.get_playback_volume_range().0;
@@ -32,9 +36,7 @@ fn set_volume(){
     println!("Volume set to 50%");
 }
 
-
-fn play_audio(){
-
+fn play_audio() {
     // Get the default output stream
     let (_stream, stream_handle) = OutputStream::try_default().unwrap();
 
@@ -55,10 +57,16 @@ fn play_audio(){
     sink.sleep_until_end();
 }
 
-
 fn main() {
-
+    for row in frames::nyan_01::NYAN_01.iter() {
+        for color in row.iter() {
+            print!("{}", color.to_ansi_code());
+        }
+        println!();
+    }
+    println!("Nyan OS");
+    println!("01 June 2025");
+    println!("Developed by Huzaifa Irfan");
     set_volume();
-    play_audio();   
-
+    play_audio();
 }
