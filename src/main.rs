@@ -6,6 +6,8 @@ use alsa::mixer::{Mixer, SelemChannelId, SelemId};
 pub mod color;
 pub mod frames;
 
+use std::{thread, time::Duration};
+
 fn set_volume() {
     // Open the "default" mixer
     let mixer = Mixer::new("default", false).expect("Failed to open mixer");
@@ -57,16 +59,43 @@ fn play_audio() {
     sink.sleep_until_end();
 }
 
-fn main() {
-    for row in frames::nyan_01::NYAN_01.iter() {
-        for color in row.iter() {
-            print!("{}", color.to_ansi_code());
+fn animate() {
+    loop {
+        for frame in frames::FRAMES.iter() {
+            // Move cursor to second row, first column
+            print!("\x1B[5;1H");
+
+            for row in frame {
+                for color in row.iter() {
+                    print!("{}", color.to_ansi_code());
+                }
+                println!();
+            }
+            // Delay between frames (e.g., 100 milliseconds)
+            thread::sleep(Duration::from_millis(100));
         }
-        println!();
     }
+}
+
+fn main() {
+    // Clear the screen (optional, for better animation effect)
+    print!("\x1B[2J\x1B[1;1H"); // ANSI escape codes to clear screen and move cursor to top-left
     println!("Nyan OS");
     println!("01 June 2025");
     println!("Developed by Huzaifa Irfan");
-    set_volume();
-    play_audio();
+
+    // Thread for animation
+    let animation_handle = thread::spawn(|| {
+        animate();
+    });
+
+    // Thread for audio setup and playback
+    let audio_handle = thread::spawn(|| {
+        set_volume();
+        play_audio();
+    });
+
+    // Wait for both threads to complete
+    animation_handle.join().unwrap();
+    audio_handle.join().unwrap();
 }

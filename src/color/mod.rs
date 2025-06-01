@@ -37,7 +37,7 @@ impl Color {
             Color::LightMagenta => "\x1b[105m  \x1b[0m",
             Color::LightCyan => "\x1b[106m  \x1b[0m",
             Color::White => "\x1b[107m  \x1b[0m",
-            Color::Brown => "\x1b[107m  \x1b[0m"
+            Color::Brown => "\x1b[107m  \x1b[0m",
         }
     }
 }
