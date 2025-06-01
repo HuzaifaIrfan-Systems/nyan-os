@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
-cargo build --release --target x86_64-unknown-linux-musl
-cp target/x86_64-unknown-linux-musl/release/nyan app/
+ffmpeg -i src/audio/nyan.mp3 src/audio/nyan.wav
+
+cargo build --release
+cp target/release/nyan app/
 app/nyan

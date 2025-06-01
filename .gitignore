@@ -29,6 +29,7 @@ app/
 OVMF_CODE_4M.fd
 OVMF_VARS_4M.fd
 
+*.wav
 
 # Added by cargo
 

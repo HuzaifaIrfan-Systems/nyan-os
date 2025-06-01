@@ -38,13 +38,13 @@ EOF
 
 makefile root:root 0644 "$tmp"/etc/apk/world <<EOF
 alpine-base
-feh
+libgcc
+gcompat
+alsa-lib
 alsa-utils
 alsaconf
 pulseaudio
 pulseaudio-utils
-pavucontrol-qt
-agetty
 EOF
 
 
@@ -127,6 +127,11 @@ rc_add syslog boot
 
 rc_add udev boot
 rc_add dbus boot
+
+
+rc_add libgcc boot
+rc_add gcompat boot
+rc_add alsa-lib boot
 
 rc_add mount-ro shutdown
 rc_add killprocs shutdown
