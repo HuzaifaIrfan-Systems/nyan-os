@@ -132,6 +132,9 @@ fn main() {
     println!("Nyan OS");
     println!("01 June 2025");
     println!("Developed by Huzaifa Irfan");
+    println!("CTRL + ALT + F1 for NYAN");
+    println!("CTRL + ALT + F2 for alsamixer");
+
 
     // Thread for animation
     let animation_handle = thread::spawn(|| {
