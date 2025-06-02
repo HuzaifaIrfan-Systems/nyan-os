@@ -1,20 +1,21 @@
-pub mod nyan_01;
-pub mod nyan_02;
-pub mod nyan_03;
+use crate::console::color::Color;
 
-pub mod nyan_04;
-pub mod nyan_05;
-pub mod nyan_06;
+mod nyan_01;
+mod nyan_02;
+mod nyan_03;
 
-pub mod nyan_07;
-pub mod nyan_08;
-pub mod nyan_09;
+mod nyan_04;
+mod nyan_05;
+mod nyan_06;
 
-pub mod nyan_10;
-pub mod nyan_11;
-pub mod nyan_12;
+mod nyan_07;
+mod nyan_08;
+mod nyan_09;
 
-use crate::color::Color;
+mod nyan_10;
+mod nyan_11;
+mod nyan_12;
+
 
 pub const FRAMES: [[[Color; 80]; 25]; 12] = [
     nyan_01::NYAN_01,

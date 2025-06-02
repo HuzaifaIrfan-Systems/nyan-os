@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-ffmpeg -i src/audio/nyan.mp3 src/audio/nyan.wav
+ffmpeg -i src/sound/audio/nyan.mp3 src/sound/audio/nyan.wav
 
 cargo build --release
 mkdir -p app
