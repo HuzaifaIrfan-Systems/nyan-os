@@ -5,9 +5,14 @@
   <p><h3 align="center">Linux Boot to Nyan Cat 🚀</h3></p>
 </div>
 
-https://www.youtube.com/watch?v=OKEUUPkvNd4
+
 •
 <hr>
+
+## Demo Video
+
+[![Demo Video](https://img.youtube.com/vi/j4AJb-qvTO4/0.jpg)](https://www.youtube.com/watch?v=j4AJb-qvTO4)
+
 
 ## Build Nyan Rust App
 
