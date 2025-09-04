@@ -43,8 +43,6 @@ gcompat
 alsa-lib
 alsa-utils
 alsaconf
-pulseaudio
-pulseaudio-utils
 EOF
 
 
